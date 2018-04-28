@@ -1,5 +1,5 @@
 {
-  "name": "graphql",
+  "name": "graphqlserver",
   "version": "1.0.0",
   "description": "A server in nodejs with GraphQL APIs. ",
   "main": "app.js",
@@ -20,5 +20,11 @@
   "bugs": {
     "url": "https://github.com/aaqilcs102/graphQL-practice/issues"
   },
-  "homepage": "https://github.com/aaqilcs102/graphQL-practice#readme"
+  "homepage": "https://github.com/aaqilcs102/graphQL-practice#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "express-graphql": "^0.6.12",
+    "graphql": "^0.13.2",
+    "mongoose": "^5.0.16"
+  }
 }

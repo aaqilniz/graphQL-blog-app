@@ -1,0 +1,1 @@
+An Express based GraphQL server for a blog site.
