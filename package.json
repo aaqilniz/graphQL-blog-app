@@ -1,0 +1,24 @@
+{
+  "name": "graphql",
+  "version": "1.0.0",
+  "description": "A server in nodejs with GraphQL APIs. ",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aaqilcs102/graphQL-practice.git"
+  },
+  "keywords": [
+    "graphql",
+    "nodejs",
+    "express"
+  ],
+  "author": "Muhammad Aaqil",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aaqilcs102/graphQL-practice/issues"
+  },
+  "homepage": "https://github.com/aaqilcs102/graphQL-practice#readme"
+}
