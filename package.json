@@ -4,17 +4,15 @@
   "description": "A server in nodejs with GraphQL APIs. ",
   "main": "graphqlServer.js",
   "scripts": {
+    "start": "node graphqlServer",
+    "dev": "nodemon --exec node graphqlServer",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/aaqilcs102/graphQL-practice.git"
   },
-  "keywords": [
-    "graphql",
-    "nodejs",
-    "express"
-  ],
+  "keywords": ["graphql", "nodejs", "express"],
   "author": "Muhammad Aaqil",
   "license": "ISC",
   "bugs": {

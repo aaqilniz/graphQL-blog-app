@@ -13,46 +13,39 @@ const {
   GraphQLNonNull
 } = require("graphql");
 
-// const schema = new GraphQLSchema({
-//   // Browse: http://localhost:3000/graphql?query={counter,message}
-//   query: new GraphQLObjectType({
-//     name: "Query",
-//     fields: () => ({
-//       counter: {
-//         type: GraphQLInt,
-//         resolve: () => counter
-//       },
-//       message: {
-//         type: GraphQLString,
-//         resolve: () => "Salem"
-//       }
-//     })
-//   }),
-//   mutiation: new GraphQLObjectType({
-//     name: "Mutation",
-//     fields: () => ({
-//       incrementCounter: {
-//         type: GraphQLInt,
-//         resolve: () => ++counter
-//       }
-//     })
-//   })
-// });
-
 const Post = new GraphQLObjectType({
   name: "Post",
-  fields: () => ({
+  args: {
     title: {
       type: GraphQLString
+    }
+  },
+  fields: () => ({
+    title: {
+      type: GraphQLString,
+      resolve: (root, args, context, info) => {
+        console.log(root);
+        console.log(root.title);
+        return root.title;
+      }
     },
     content: {
-      type: GraphQLString
+      type: GraphQLString,
+      resolve: (root, args, context, info) => {
+        return root.content;
+      }
     },
     author: {
-      type: GraphQLString
+      type: GraphQLString,
+      resolve: (root, args, context, info) => {
+        return root.author;
+      }
     },
     _id: {
-      type: GraphQLString
+      type: GraphQLString,
+      resolve: (root, args, context, info) => {
+        return root._id;
+      }
     }
   })
 });
@@ -61,16 +54,28 @@ const User = new GraphQLObjectType({
   name: "User",
   fields: () => ({
     _id: {
-      type: GraphQLString
+      type: GraphQLString,
+      resolve: (root, args, context, info) => {
+        return root._id;
+      }
     },
     name: {
-      type: GraphQLString
+      type: GraphQLString,
+      resolve: (root, args, context, info) => {
+        return root.name;
+      }
     },
     email: {
-      type: GraphQLString
+      type: GraphQLString,
+      resolve: (root, args, context, info) => {
+        return root.email;
+      }
     },
     posts: {
-      type: new GraphQLList(Post)
+      type: new GraphQLList(Post),
+      resolve: (root, args, context, info) => {
+        return root.posts;
+      }
     }
   })
 });
@@ -89,7 +94,8 @@ const schema = new GraphQLSchema({
     fields: () => ({
       users: {
         type: new GraphQLList(User),
-        resolve: async (parentValues, args) => {
+        resolve: async (root, args, context, info) => {
+          console.log(context);
           return await user
             .getUser(args)
             .then(result => {
@@ -102,6 +108,7 @@ const schema = new GraphQLSchema({
       }
     })
   }),
+
   mutation: new GraphQLObjectType({
     name: "Mutation",
     fields: () => ({
@@ -115,7 +122,7 @@ const schema = new GraphQLSchema({
             type: new GraphQLNonNull(GraphQLString)
           }
         },
-        resolve: (parentValues, args) => {
+        resolve: (root, args, context, info) => {
           return user
             .registerUser(args)
             .then(result => {
